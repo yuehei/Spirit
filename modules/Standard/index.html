@@ -11,6 +11,7 @@
     <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
+    <link href="./css/common.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/main.css" />
 <style>
 b {
@@ -67,10 +68,16 @@ section > ul li {
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
     	<ul class="nav navbar-nav">
-            <li><a href="./index.html">移动开发规范</a></li>
-            <li><a href="./modules/JM/jm.html">JM</a></li>
-            <li><a id="nav-jmui" href="./modules/JMUI/jmui.html">JMUI</a></li>
-            <li><a href="./modules/Mars/mars.html">Mars</a></li>
+            <li><a href="../Standard/index.html">移动开发规范</a></li>
+            <li><a href="../JM/index.html">JM</a></li>
+            <li class="dropdown">
+              <a id="drop" href="../JMUI/index.html" role="button" class="dropdown-toggle" data-toggle="dropdown">JMUI <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="../JMUI/index.html">简介</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="../JMUI/demo.html">Demo</a></li>
+              </ul>
+            </li>
+            <li><a href="../Mars/index.html">Mars</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

@@ -1,12 +1,1 @@
 /* 还是为了以后扩展需要公共样式 */
-
-#secondNav{
-    position: relative;
-    left: 165px;
-    display: none;
-}
-
-#secondNav a:hover{
-    background: none;
-    color: white;
-}
