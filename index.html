@@ -20,7 +20,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
+    <link href="./css/common.css" rel="stylesheet">
     <link href="./css/index.css" rel="stylesheet">
 </head>
 <body>
@@ -33,20 +33,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand">代号Spirit</a>
+                <a class="navbar-brand" >代号Spirit</a>
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">移动Web开发规范</a></li>
-                    <li><a href="#">JM</a></li>
-                    <li><a href="#">JMUI</a></li>
-                    <li><a href="#">Mars</a></li>
-                </ul>
+              <ul class="nav navbar-nav">
+                <li><a href="./index.html">移动开发规范</a></li>
+                <li><a href="./modules/JM/jm.html">JM</a></li>
+                <li><a id="nav-jmui" href="./modules/JMUI/jmui.html">JMUI</a></li>
+                <li><a href="./modules/Mars/mars.html">Mars</a></li>
+              </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#myModal">关于Spirit</a></li>
-                    <li><a target="_blank" href="http://www.alloyteam.com/about/">关于我们</a></li>
-                </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a data-toggle="modal" data-target="#myModal">关于Spirit</a></li>
+                  <li><a target="_blank" href="http://www.alloyteam.com/about/">关于我们</a></li>
+              </ul>
+            </nav>
+
+            <nav id="secondNav">
+              <ul class="nav nav-pills">
+                <li><a href="#jm-intro">简介</a></li>
+                <li><a href="#jm-doc">文档</a></li>
+                <li><a href="#jm-demo">Demo</a></li>
+                <li><a href="#jm-download">下载</a></li>
+              </ul>
             </nav>
         </div>
     </header>
@@ -114,5 +123,6 @@
     <script src="./js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./bootstrap3/js/bootstrap.min.js"></script>
+    <script src="./js/common.js"></script>
 </body>
 </html>

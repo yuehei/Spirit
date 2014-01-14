@@ -11,17 +11,20 @@
 
     <!-- Bootstrap core CSS -->
     <link href="./bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+        <script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
+    <link href="../../css/common.css" rel="stylesheet">
     <link href="./module/css_path/xxx.css" rel="stylesheet">
+    <style>
+    
+    </style>
 </head>
 <body>
     <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
@@ -37,15 +40,24 @@
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">移动开发规范</a></li>
-                    <li><a href="#">JM</a></li>
-                    <li><a href="#">JMUI</a></li>
-                    <li><a href="#">Mars</a></li>
+                    <li><a href="./index.html">移动开发规范</a></li>
+                    <li><a href="./modules/JM/jm.html">JM</a></li>
+                    <li><a id="nav-jmui" href="./modules/JMUI/jmui.html">JMUI</a></li>
+                    <li><a href="./modules/Mars/mars.html">Mars</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#myModal">关于Spirit</a></li>
+                    <li><a data-toggle="modal" data-target="#myModal" href="javascript:;">关于Spirit</a></li>
                     <li><a target="_blank" href="http://www.alloyteam.com/about/">关于我们</a></li>
+                </ul>
+            </nav>
+
+            <nav id="secondNav">
+                <ul class="nav nav-pills">
+                    <li><a href="#jm-intro">简介</a></li>
+                    <li><a href="#jm-doc">文档</a></li>
+                    <li><a href="#jm-demo">Demo</a></li>
+                    <li><a href="#jm-download">下载</a></li>
                 </ul>
             </nav>
         </div>
@@ -86,5 +98,16 @@
     <script src="./js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./bootstrap3/js/bootstrap.min.js"></script>
+
+    <script>
+        //二级导航的显示控制 
+        $('#nav-jmui,#secondNav').mouseover(function(){
+            $('#secondNav').show();
+        });
+        
+        $('#nav-jmui,#secondNav').mouseout(function(){
+            $('#secondNav').hide();
+        });
+    </script>
 </body>
 </html>
