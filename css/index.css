@@ -51,7 +51,6 @@ section.container:last-child{
 }
 
 .banner {
-  margin-top: 46px;
   margin-bottom: 40px;
   background-image: url(../img/Mars_Rover.jpg);
   background-size: cover;

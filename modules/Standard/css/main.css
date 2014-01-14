@@ -8,58 +8,6 @@ blockquote{
 blockquote p {
 	line-height: 2;
 }
-.mweb_standard_img{
-	margin: 0 auto;
-}
-.item{
-	height: 400px;
-}
-.item_standard{
-	background-color: #27A4E1;
-	padding-top: 50px;
-}
-.item_JM{
-	background-color: #1E2B33;
-}
-.item_JMUI{
-	background-color: #C3522F;
-}
-.item_Mars{
-	background-color: #2E633B;
-}
-.carousel-caption{
-	font-size: 18px;
-	cursor: pointer;
-}
-.banner_title{
-	font-size: 40px;
-}
-.logo_title{
-	font-size:60px;
-	margin-bottom: 40px;
-}
-.working_label{
-	position: relative;
-	top: -10px;
-}
-.main_container {
-	border-bottom: 1px solid #D5D5D5;
-	margin: 40px auto;
-}
-.main_container:last-child{
-	border-bottom: none;
-}
-#secondNav{
-	position: relative;
-	left: 165px;
-	display: none;
-}
-
-#secondNav a:hover{
-	background: none;
-	color: white;
-}
-
 .my_sidebar {
 	position: fixed;
 	box-shadow: 0px 0px 5px 2px #ddd;
@@ -79,7 +27,6 @@ blockquote p {
 
 .page_content {
 	float: right;
-	top: 50px;
 }
 
 .demo_block{
