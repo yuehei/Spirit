@@ -195,35 +195,36 @@
 		</div>
 
 		<p>核心代码</p>
-		<pre><code>runBtn.onclick = function(){
-		    $D.setStyle(runBtn,"display","none");
-		    rect.style.cssText = "";
+		<pre><code>
+runBtn.onclick = function(){
+    $D.setStyle(runBtn,"display","none");
+    rect.style.cssText = "";
 
-		    //设置动画基本参数，并且每个动画间隔为1秒
-		    J.Animation({
-		        selector:"#demo1_rect",  //要操作的dom的selector
-		        duration:1000,
-		        use3d:true
-		    }).setStyle({       //向右运动了60%，并且color变成蓝色
-		        "left":"60%",
-		        "background":"blue"
-		    }).transit(function(){
-		        this.scale(.5).setStyle({
-		            'background':"red"
-		        }).transit(function(){
-		            this.rotate(180).setStyle({
-		                opacity:0
-		            }).transit(function(){
-		                this.toOrigin().setStyle({
-		                    "opacity":1,
-		                    "background":"green"
-		                }).transit(function(){
-		                    $D.setStyle(runBtn,"display","block");
-		                });
-		            });
-		        });
-		    });
-		}
+    //设置动画基本参数，并且每个动画间隔为1秒
+    J.Animation({
+        selector:"#demo1_rect",  //要操作的dom的selector
+        duration:1000,
+        use3d:true
+    }).setStyle({       //向右运动了60%，并且color变成蓝色
+        "left":"60%",
+        "background":"blue"
+    }).transit(function(){
+        this.scale(.5).setStyle({
+            'background':"red"
+        }).transit(function(){
+            this.rotate(180).setStyle({
+                opacity:0
+            }).transit(function(){
+                this.toOrigin().setStyle({
+                    "opacity":1,
+                    "background":"green"
+                }).transit(function(){
+                    $D.setStyle(runBtn,"display","block");
+                });
+            });
+        });
+    });
+}
 		</code></pre>
 		<p>J.Animation是这个模块的命名模块，传入一个options的obj来设置动画的基本参数。然后在函数尾部使用<code>setStyle</code>进行回调，<code>setStyle</code>是用于设置动画改变的状态。再在函数尾部调用<code>transit</code>方法表示以CSS3的transition方式进行启动动画。我们依旧在<code>transit</code>里面传入匿名函数，表示一段动画结束后，进行回调函数callback，这样我们就不断进行<code>链式调用</code>和callback回调来完成一段动画。</p>
 		<h3 id="animation_1">Animation 传入参数说明</h3>
@@ -267,22 +268,22 @@
 		<p>示例代码</p>
 
 		<pre><code>
-			JM.$package("MUI",function(J){
-			    // JM的命名空间
-			})
+JM.$package("MUI",function(J){
+    // JM的命名空间
+})
 
-			//JM的类继承方式
-			var AnimateTab = J.Class({extend:MUI.Tab},{
-			    init:function(options){
-			        //do something
-			    },
-			    _handleEvent:function(e){
-			        //do something
-			    },
-			    bindHandlers:function(){
-			        //do something
-			    }
-			})
+//JM的类继承方式
+var AnimateTab = J.Class({extend:MUI.Tab},{
+    init:function(options){
+        //do something
+    },
+    _handleEvent:function(e){
+        //do something
+    },
+    bindHandlers:function(){
+        //do something
+    }
+})
 		</code></pre>
 
 		<h3>base 公开对外基础函数</h3>
@@ -305,64 +306,67 @@
 
 		<h2 id="borwser">borwser 浏览器检测模块</h2>
 		<p>本可简单简单地划分到utils模块，但是在移动web上我们检测的不单单是浏览器及其版本后，后继拓展还有，终端平台及其版本，所以我们单独地划分出一个模块出来（其实最终还是会合到一个js里面）。</p>
-		<pre><code>//对应的值是版本号，如果不是这个浏览器则版本号为0
+		<pre><code>
+//对应的值是版本号，如果不是这个浏览器则版本号为0
 
-		if(J.browser.plugins.flash&gt;=9){
+if(J.browser.plugins.flash&gt;=9){
 
-		}
-		if(J.browser.ie){
+}
+if(J.browser.ie){
 
-		}
-		if(J.browser.chrome &gt;= 30){
+}
+if(J.browser.chrome &gt;= 30){
 
-		}
-		if(J.adobeAir){
+}
+if(J.adobeAir){
 
-		}
+}
 		</code></pre>
 		<h2 id="cookie">cookie</h2>
 		<p>非常简单的cookie种植和移除,直接粘贴源码吧</p>
-		<pre><code>J.$package(function(J){
-		    var domainPrefix = window.location.host;
-		    var cookie = {
-		        set : function(name, value, domain, path, hour) {
-		            if (hour) {
-		                var today = new Date();
-		                var expire = new Date();
-		                expire.setTime(today.getTime() + 3600000 * hour);
-		            }
-		            window.document.cookie = name + "=" + value + "; " + (hour ? ("expires=" + expire.toGMTString() + "; ") : "") + (path ? ("path=" + path + "; ") : "path=/; ") + (domain ? ("domain=" + domain + ";") : ("domain=" + domainPrefix + ";"));
-		            return true;
-		        },
-		        get : function(name) {
-		            var r = new RegExp("(?:^|;+|\\s+)" + name + "=([^;]*)");
-		            var m = window.document.cookie.match(r);
-		            return (!m ? "" : m[1]);
-		        },
-		        remove : function(name, domain, path) {
-		            window.document.cookie = name + "=; expires=Mon, 26 Jul 1997 05:00:00 GMT; " + (path ? ("path=" + path + "; ") : "path=/; ") + (domain ? ("domain=" + domain + ";") : ("domain=" + domainPrefix + ";"));
-		        }
-		    };
-		    J.cookie = cookie;
+		<pre><code>
+J.$package(function(J){
+    var domainPrefix = window.location.host;
+    var cookie = {
+        set : function(name, value, domain, path, hour) {
+            if (hour) {
+                var today = new Date();
+                var expire = new Date();
+                expire.setTime(today.getTime() + 3600000 * hour);
+            }
+            window.document.cookie = name + "=" + value + "; " + (hour ? ("expires=" + expire.toGMTString() + "; ") : "") + (path ? ("path=" + path + "; ") : "path=/; ") + (domain ? ("domain=" + domain + ";") : ("domain=" + domainPrefix + ";"));
+            return true;
+        },
+        get : function(name) {
+            var r = new RegExp("(?:^|;+|\\s+)" + name + "=([^;]*)");
+            var m = window.document.cookie.match(r);
+            return (!m ? "" : m[1]);
+        },
+        remove : function(name, domain, path) {
+            window.document.cookie = name + "=; expires=Mon, 26 Jul 1997 05:00:00 GMT; " + (path ? ("path=" + path + "; ") : "path=/; ") + (domain ? ("domain=" + domain + ";") : ("domain=" + domainPrefix + ";"));
+        }
+    };
+    J.cookie = cookie;
 
-		});
+});
 		</code></pre>
 
 		<h2 id="dom">dom</h2>
 		<p>HTML的dom操作模块。包括选择器，选取样式，修改样式切换Class等方法。虽然跟著名的jquery对比会逊色一筹，但是基本的功能都能满足，最重要的是jquery有100多K，我们才30多K，我们把最实际常用的Dom操作抽离处理，减少库的代码量，在移动Web上带来更少的流量。</p>
 		<p>示例代码</p>
-		<pre><code>var $D = J.dom;
-		var runBtn = $D.id('runBtn'),
-		    runObj = $D.$('#demo_block .rect'),
-		    stopBtn = $D.className('demaxiya');
+		<pre><code>
+var $D = J.dom;
+var runBtn = $D.id('runBtn'),
+    runObj = $D.$('#demo_block .rect'),
+    stopBtn = $D.className('demaxiya');
 
-		runBtn.onclick = function(){
-		    $D.toggleClass(runBtn,'active');
-		}
+runBtn.onclick = function(){
+    $D.toggleClass(runBtn,'active');
+}
 
-		if($D.getStyle(runBtn,'background') == '#000'){
-		    $D.remove(stopBtn);
-		}
+if($D.getStyle(runBtn,'background') == '#000'){
+    $D.remove(stopBtn);
+}
 		</code></pre>
 		<p>除了比较常用的<code>J.dom.$()</code>的选择器方式，我们还提供了<code>J.dom.id()</code>和<code>J.dom.tagName()</code>等的选择器方式，我们建议，可以的话尽量是用id选择器，因为这是效率最高的。我们没有像Jquery那样吧选择到的Dom元素包装成一个Jquery对象，我们选择到的是原生的Dom元素，方式也是传入Dom和参数。It's simple,but it do well.</p>
 		<h3 id="dom_1">dom 函数列表</h3>
@@ -391,23 +395,24 @@
 		<p>除了平常的支持IE等浏览器兼容外，最重要的是支持移动端的touch，swip等手势事件及transform等移动专有事件.PC端和移动端最大一个不同除了屏幕分辨率外，还有一个非常重要的就是事件不同。我们不但支持了这些事件，还自定义了手势事和提供了很多辅助方法，帮助开发者的实际开发应用，例如:<code>getTouchPos``getDist</code>等。在移动web上坑最多的就是event处理的这一块，至少JM会让你少走很多弯路。</p>
 		
 		<p>示例代码</p>
-		<pre><code>var $E = J.event;
-		//动画事件结束后
-		$E.on(this.contentWrap,"webkitTransitionEnd",function(e){
-		    // 自身销毁changed事件
-		    $E.fire(self ,"changed" ,{
-		        type:"changed",
-		        currentIndex:self.currentIndex
-		    });
-		});
+		<pre><code>
+var $E = J.event;
+//动画事件结束后
+$E.on(this.contentWrap,"webkitTransitionEnd",function(e){
+    // 自身销毁changed事件
+    $E.fire(self ,"changed" ,{
+        type:"changed",
+        currentIndex:self.currentIndex
+    });
+});
 
-		var startEvt = isTouchDevice ? "touchstart" : "mousedown";
-		var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
-		var endEvt = isTouchDevice ? "touchend" : "mouseup";
+var startEvt = isTouchDevice ? "touchstart" : "mousedown";
+var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
+var endEvt = isTouchDevice ? "touchend" : "mouseup";
 
-		//touch事件的绑定
-		$E.on(document.body ,moveEvt ,_handleEvent);
-		$E.on(document.body ,endEvt ,_handleEvent);
+//touch事件的绑定
+$E.on(document.body ,moveEvt ,_handleEvent);
+$E.on(document.body ,endEvt ,_handleEvent);
 		</code></pre>
 
 		<p>注意，这里关于touch或swip事件的例子可以查看JMUI的控件，这样会更加清楚.</p>
@@ -457,54 +462,56 @@
 	
 		<h2 id="format">format</h2>
 		<p>不多说，直接上源码</p>
-		<pre><code> var date = function(date, formatString){
-		    /*
-		     * eg:formatString="YYYY-MM-DD hh:mm:ss";
-		     */
-		    var o = {
-		        "M+" : date.getMonth()+1,    //month
-		        "D+" : date.getDate(),    //day
-		        "h+" : date.getHours(),    //hour
-		        "m+" : date.getMinutes(),    //minute
-		        "s+" : date.getSeconds(),    //second
-		        "q+" : Math.floor((date.getMonth()+3)/3),    //quarter
-		        "S" : date.getMilliseconds()    //millisecond
-		    }
+		<pre><code> 
+var date = function(date, formatString){
+    /*
+     * eg:formatString="YYYY-MM-DD hh:mm:ss";
+     */
+    var o = {
+        "M+" : date.getMonth()+1,    //month
+        "D+" : date.getDate(),    //day
+        "h+" : date.getHours(),    //hour
+        "m+" : date.getMinutes(),    //minute
+        "s+" : date.getSeconds(),    //second
+        "q+" : Math.floor((date.getMonth()+3)/3),    //quarter
+        "S" : date.getMilliseconds()    //millisecond
+    }
 
-		    if(/(Y+)/.test(formatString)){
-		        formatString = formatString.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));
-		    }
+    if(/(Y+)/.test(formatString)){
+        formatString = formatString.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));
+    }
 
-		    for(var k in o){
-		        if(new RegExp("("+ k +")").test(formatString)){
-		            formatString = formatString.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
-		        }
-		    }
-		    return formatString;
-		};
+    for(var k in o){
+        if(new RegExp("("+ k +")").test(formatString)){
+            formatString = formatString.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
+        }
+    }
+    return formatString;
+};
 		</code></pre>
 		<h2 id="http">http</h2>
 		<p>http处理模块，一些处理urlparam方法和ajax方法。</p>
 		<p>示例代码</p>
-		<pre><code>J.http.ajax({
-		    url: 'http:www.xxx.com/getSomething'
-		    method : 'post',
-		    timeout : 50000,
-		    withCredentials : true, //是否跨域
-		    async : true, //是否异步
+		<pre><code>
+J.http.ajax({
+    url: 'http:www.xxx.com/getSomething'
+    method : 'post',
+    timeout : 50000,
+    withCredentials : true, //是否跨域
+    async : true, //是否异步
 
-		    onError : function(data){
-		        alert(' ajax error : ' + data.msg);
-		    },
+    onError : function(data){
+        alert(' ajax error : ' + data.msg);
+    },
 
-		    onSuccess : function(data){
-		        //do something ...
-		    },
-		    onTimeout : function(data){
-		        //do something ...
-		    }
+    onSuccess : function(data){
+        //do something ...
+    },
+    onTimeout : function(data){
+        //do something ...
+    }
 
-		});
+});
 		</code></pre>
 		<h3 id="http_1">http 方法列表</h3>
 		<ul class="function_list">
@@ -517,27 +524,29 @@
     <h2 id="platform">platForm 平台检查模块</h2>
     <p>平台检查模块跟borwser模块一样，是检测模块，后继优化会把两者这合并。为兼容多终端多版本，平台检查是少不了.</p>
     <p>示例代码</p>
-    <pre><code>if(J.platform.android &amp;&amp; J.platform.ieVersion &gt; 4){
-        //....
-    }
-    if(platform.android){
+    <pre><code>
+if(J.platform.android &amp;&amp; J.platform.ieVersion &gt; 4){
+    //....
+}
+if(platform.android){
 
-    }
-    //其他平台检查
-    //platform.android
-    //platform.iPhone
-    //platform.iPad
-    //platform.iPod
-    //platform.winPhone 
-    //platform.IOS
-    //.touchDevice
+}
+//其他平台检查
+//platform.android
+//platform.iPhone
+//platform.iPad
+//platform.iPod
+//platform.winPhone 
+//platform.IOS
+//.touchDevice
     </code></pre>
     <h2 id="prefix">prefix 前缀辅助模块</h2>
     <p>提供了集中使用prefixe的场景，dom节点，css，js等。</p>
-    <pre><code>J.prefix.dom == 'WebKit'
-    J.prefix.lowercase == 'moz'
-    J.prefix.css == '-ms'
-    J.prefix.js == 'webkit'
+    <pre><code>
+J.prefix.dom == 'WebKit'
+J.prefix.lowercase == 'moz'
+J.prefix.css == '-ms'
+J.prefix.js == 'webkit'
     </code></pre>
     <h2 id="string">string</h2>
     <p>提供tmpl 轻量的模板函数。<code>encodeHTML</code>和<code>decodeHTML</code>常用字符编码解析函数和一些URL操作的辅助函数。</p>
@@ -550,17 +559,18 @@
     </ul>
     <h2 id="support">support 特性检测模块</h2>
     <p>目前特效检测内容只用audio，fixed，flash和transition。</p>
-    <pre><code>J.support = {
-        audio : {
-            m4a : 'maybe',
-            mp3 : 'maybe',
-            ogg : 'probably',
-            wav : 'probably'
-        }
-        fixed : true,
-        flash : ture,
-        transitionend : 'transititonend'
+    <pre><code>
+J.support = {
+    audio : {
+        m4a : 'maybe',
+        mp3 : 'maybe',
+        ogg : 'probably',
+        wav : 'probably'
     }
+    fixed : true,
+    flash : ture,
+    transitionend : 'transititonend'
+}
     </code></pre>
 
     <h2 id="type">type 类型检查辅助模块</h2>
