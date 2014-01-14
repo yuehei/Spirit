@@ -22,7 +22,7 @@ p{
 blockquote p{
 	line-height: 2;
 }
-.container ul{
+.page_content ul{
 	margin-left: 20px;
 }
 
@@ -91,11 +91,11 @@ section.container:last-child{
 	width: 160px;
 }
 .my_sidebar .active{
-background: #ddd;
+	background: #ddd;
 }
 
 .my_sidebar .active.hasInner{
-background: white;
+	background: white;
 }
 .my_sidebar .sidebar_inner{
 	display: none;
@@ -103,23 +103,24 @@ background: white;
 }
 .page_content{
 	float: right;
-	width: 720px;
+	/*width: 720px;*/
 }
-@media (min-width: 1200px){
-	.page_content{
-		width: 920px;
-	}
-}
+
 @media (max-width: 990px){
 	.my_sidebar{
 		display: none;
 	}
 }
-@media (max-width :760px){
+/*@media (min-width: 1200px){
+	.page_content{
+		width: 920px;
+	}
+}*/
+/*@media (max-width :760px){
 	.page_content{
 		width:100%;
 	}
-}
+}*/
 
 .demo_block{
 	width: 100%;
