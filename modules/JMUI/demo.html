@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="./css/jmui/mui-tab.css" />
 
 
+<link rel="stylesheet" href="../../css/common.css" />
 <link rel="stylesheet" href="./css/main.css" />
 
 
@@ -39,7 +40,7 @@
 
 <body data-spy="scroll" data-target="#sidebar" data-offset="70">
 
-<header id="header" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+<header id="header" class="navbar navbar-inverse navbar-fixed-top" role="banner">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -75,27 +76,29 @@
 
 <section id="jm" class="container row">
 
-	<div id="sidebar" class="my_sidebar col-md-2">
-		<ul class="nav">
-			<li class="sidebar_head_li"><a href="#buttons">Buttons</a></li>
-			<li class="sidebar_head_li"><a href="#checkboxes">Checkboxes</a></li>
-			<li class="sidebar_head_li"><a href="#radios">Radio</a></li>
-			<li class="sidebar_head_li"><a href="#progress">Progress</a></li>
-			<li class="sidebar_head_li"><a href="#text-input">Text Input</a></li>
-			<li class="sidebar_head_li"><a href="#toggle-switch">Toggle Switch</a></li>
-			<li class="sidebar_head_li"><a href="#image-switch">Image Switch</a></li>
-			<li class="sidebar_head_li"><a href="#select">Select</a></li>
-			<li class="sidebar_head_li"><a href="#slider-block">Slider</a></li>
-			<li class="sidebar_head_li"><a href="#dialog-block">Dialog</a></li>
-			<li class="sidebar_head_li"><a href="#toolbar">ToolBar</a></li>
-			<li class="sidebar_head_li"><a href="#list-groupList">List and GroupList</a></li>
-			<li class="sidebar_head_li"><a href="#swipe_change">拖动切换(完善中...)</a></li>
-			<li class="sidebar_head_li"><a href="#gestue">手势判断(完善中...)</a></li>
-	                          
-		</ul>
+	<div class="col-md-3">
+		<div id="sidebar" class="my_sidebar">
+			<ul class="nav">
+				<li class="sidebar_head_li"><a href="#buttons">Buttons</a></li>
+				<li class="sidebar_head_li"><a href="#checkboxes">Checkboxes</a></li>
+				<li class="sidebar_head_li"><a href="#radios">Radio</a></li>
+				<li class="sidebar_head_li"><a href="#progress">Progress</a></li>
+				<li class="sidebar_head_li"><a href="#text-input">Text Input</a></li>
+				<li class="sidebar_head_li"><a href="#toggle-switch">Toggle Switch</a></li>
+				<li class="sidebar_head_li"><a href="#image-switch">Image Switch</a></li>
+				<li class="sidebar_head_li"><a href="#select">Select</a></li>
+				<li class="sidebar_head_li"><a href="#slider-block">Slider</a></li>
+				<li class="sidebar_head_li"><a href="#dialog-block">Dialog</a></li>
+				<li class="sidebar_head_li"><a href="#toolbar">ToolBar</a></li>
+				<li class="sidebar_head_li"><a href="#list-groupList">List and GroupList</a></li>
+				<li class="sidebar_head_li"><a href="#swipe_change">拖动切换(完善中...)</a></li>
+				<li class="sidebar_head_li"><a href="#gestue">手势判断(完善中...)</a></li>
+			</ul>
+		</div>
 	</div>
+	
 
-	<div class="page_content col-md-9">
+	<div class="col-md-9">
 		<h2 id="buttons">Buttons</h2>
 		<p>JMUI提供了基础样式，使用下面的class，可以快速的建立带有样式的按钮。</p>
 		<pre><code>&lt;a class="btn btn-primary"&gt;我知道了&lt;/a&gt;
@@ -1066,218 +1069,231 @@
 <script>
 $(function(){
 
+	// back to top
+    setTimeout(function () {
+      var $sideBar = $('.my_sidebar')
+
+      $sideBar.affix({
+        offset: {
+          top: function () {
+            var offsetTop      = $sideBar.offset().top
+            var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
+            var navOuterHeight = $('#header').height()
+
+            return (this.top = offsetTop - navOuterHeight - sideBarMargin)
+          }
+        , bottom: function () {
+            return (this.bottom = $('.footer').outerHeight(true))
+          }
+        }
+      })
+    }, 100)
+
 	//左边导航
 	$('#sidebar .sidebar_head_li').click(function(e){
 		if($(e.target).parents('.sidebar_inner').length) return;
 		$('.sidebar_inner',this).toggle();
 	});
 
-//button group
-var b_btn_list = new MUI.ButtonList({
-	id:"b_v_btn_list"
-});
-var w_btn_list = new MUI.ButtonList({
-	id:"w_v_btn_list"
-});
+	//button group
+	var b_btn_list = new MUI.ButtonList({
+		id:"b_v_btn_list"
+	});
+	var w_btn_list = new MUI.ButtonList({
+		id:"w_v_btn_list"
+	});
 
-//checkbox
-var cb = new MUI.Checkbox({
-id:"checkbox"
-});
-var bl_cb = new MUI.Checkbox({
-id:"bl_checkbox"
-});
+	//checkbox
+	var cb = new MUI.Checkbox({
+	id:"checkbox"
+	});
+	var bl_cb = new MUI.Checkbox({
+	id:"bl_checkbox"
+	});
 
-var bl_cl = new MUI.CheckboxList({
-id:"bl_checkboxlist"
-});
-var v_cl = new MUI.CheckboxList({
-id:"v_checkboxlist"
-});
-var v_cl = new MUI.CheckboxList({
-id:"bl_v_checkboxlist"
-});
-
-
-//input
-var autoGrowTextArea = new MUI.AutoGrowTextarea({
-	id:"autoGrowTextArea"
-});
-
-//radio
-var radio = new MUI.Radio({
-id:"radio"
-});
-var bl_radio = new MUI.Radio({
-id:"bl_radio"
-});
-var radiolist = new MUI.RadioList({
-id:"radioList"
-});
-
-var v_radiolist = new MUI.RadioList({
-id:"v_radioList"
-});
-var v_bl_radiolist = new MUI.RadioList({
-id:"v_bl_radioList"
-});
-
-//progress
-var p = new MUI.Progress({
-id:"progress_gif",
-percent:30
-});
-var p_g = new MUI.Progress({
-id:"progress_g",
-percent:60
-});
-var p_b = new MUI.Progress({
-id:"progress_b",
-percent:90
-});
-var p_y = new MUI.Progress({
-id:"progress_y",
-percent:100
-});
-
-//list
-var list1 = new MUI.List({
-id:"list1"
-});
-var n_list = new MUI.List({
-id:"n_list"
-});
-var l_icon_list = new MUI.List({
-id:"l_icon_list"
-});
-var r_icon_list = new MUI.List({
-id:"r_icon_list"
-});
-var groupList = new MUI.GroupList({
-id:"groupList"
-});
+	var bl_cl = new MUI.CheckboxList({
+	id:"bl_checkboxlist"
+	});
+	var v_cl = new MUI.CheckboxList({
+	id:"v_checkboxlist"
+	});
+	var v_cl = new MUI.CheckboxList({
+	id:"bl_v_checkboxlist"
+	});
 
 
+	//input
+	var autoGrowTextArea = new MUI.AutoGrowTextarea({
+		id:"autoGrowTextArea"
+	});
 
-//dialog
-var currentEffect,
-	currentDialogFlg;
+	//radio
+	var radio = new MUI.Radio({
+	id:"radio"
+	});
+	var bl_radio = new MUI.Radio({
+	id:"bl_radio"
+	});
+	var radiolist = new MUI.RadioList({
+	id:"radioList"
+	});
 
-var dialog = new MUI.Dialog({
-id:"dialog"
-});
-dialog.elem.onclick = function(){
-	dialog.hide(currentEffect);
-	currentDialogFlg = false;
-}	
-var $E = J.event,
-	$D = J.dom;
-$E.on($D.id("none"),"click",function(){
-		currentEffect = "none";
-		dialog.show("none");
-		currentDialogFlg = true;
-		});
-$E.on($D.id("fade"),"click",function(){
-		currentEffect = "fade";
-		dialog.show("fade");
-		currentDialogFlg = true;
-		});
-$E.on($D.id("pop"),"click",function(){
-		currentEffect = "pop";
-		dialog.show("pop");
-		currentDialogFlg = true;
-		});
-$E.on($D.id("slideup"),"click",function(){
-		currentEffect = "slideup";
-		dialog.show("slideup");
-		currentDialogFlg = true;
-		});
-$E.on($D.id("slidedown"),"click",function(){
-		currentEffect = "slidedown";
-		dialog.show("slidedown");
-		currentDialogFlg = true;
-		});
-//slide
-var sl = new MUI.Slider({
-id:"slider"
-});
-sl.setValue(20);
-var w_sl = new MUI.Slider({
-id:"w_slider"
-});
-w_sl.setValue(40);
-var b_sl = new MUI.Slider({
-id:"b_slider"
-});
-b_sl.setValue(60);
-var g_sl = new MUI.Slider({
-id:"g_slider"
-});
-g_sl.setValue(80);
+	var v_radiolist = new MUI.RadioList({
+	id:"v_radioList"
+	});
+	var v_bl_radiolist = new MUI.RadioList({
+	id:"v_bl_radioList"
+	});
 
-var v_sl = new MUI.Slider({
-id:"v_slider",
-vertical:true
-});
-v_sl.setValue(80);
-var v_w_sl = new MUI.Slider({
-id:"v_w_slider",
-vertical:true
-});
-v_w_sl.setValue(60);
-var v_b_sl = new MUI.Slider({
-id:"v_b_slider",
-vertical:true
-});
-v_b_sl.setValue(40);
-var v_g_sl = new MUI.Slider({
-id:"v_g_slider",
-vertical:true
-});
-v_g_sl.setValue(20);
+	//progress
+	var p = new MUI.Progress({
+	id:"progress_gif",
+	percent:30
+	});
+	var p_g = new MUI.Progress({
+	id:"progress_g",
+	percent:60
+	});
+	var p_b = new MUI.Progress({
+	id:"progress_b",
+	percent:90
+	});
+	var p_y = new MUI.Progress({
+	id:"progress_y",
+	percent:100
+	});
 
-//toggleSwitch
-var ts = new MUI.ToggleSwitch({
-id:"toggleSwitch"
-});
-var bl_ts = new MUI.ToggleSwitch({
-id:"bl_toggleSwitch"
-});
-var b_ts = new MUI.ToggleSwitch({
-id:"b_toggleSwitch"
-});
+	//list
+	var list1 = new MUI.List({
+	id:"list1"
+	});
+	var n_list = new MUI.List({
+	id:"n_list"
+	});
+	var l_icon_list = new MUI.List({
+	id:"l_icon_list"
+	});
+	var r_icon_list = new MUI.List({
+	id:"r_icon_list"
+	});
+	var groupList = new MUI.GroupList({
+	id:"groupList"
+	});
 
 
-//select	
-var w_sel = new MUI.Select({
-id:"w_menuSelector"
-});
-var g_sel = new MUI.Select({
-id:"g_menuSelector"
-});
 
-var bl_sel = new MUI.Select({
-id:"bl_menuSelector"
-});
-//imagechange
-var ic = new MUI.ImageChange({
-	id:"image_slider",
-	isAutoChange:true,
-	autoChangeTime:3000,
-	canSwipe:true
-});
+	//dialog
+	var currentEffect,
+		currentDialogFlg;
 
-var tb2 = new MUI.Tab({
-	id:"a_tab",
-	animate:"true"
-});
+	var dialog = new MUI.Dialog({
+	id:"dialog"
+	});
+	dialog.elem.onclick = function(){
+		dialog.hide(currentEffect);
+		currentDialogFlg = false;
+	}	
+	var $E = J.event,
+		$D = J.dom;
+	$E.on($D.id("none"),"click",function(){
+			currentEffect = "none";
+			dialog.show("none");
+			currentDialogFlg = true;
+			});
+	$E.on($D.id("fade"),"click",function(){
+			currentEffect = "fade";
+			dialog.show("fade");
+			currentDialogFlg = true;
+			});
+	$E.on($D.id("pop"),"click",function(){
+			currentEffect = "pop";
+			dialog.show("pop");
+			currentDialogFlg = true;
+			});
+	$E.on($D.id("slideup"),"click",function(){
+			currentEffect = "slideup";
+			dialog.show("slideup");
+			currentDialogFlg = true;
+			});
+	$E.on($D.id("slidedown"),"click",function(){
+			currentEffect = "slidedown";
+			dialog.show("slidedown");
+			currentDialogFlg = true;
+			});
+	//slide
+	var sl = new MUI.Slider({
+	id:"slider"
+	});
+	sl.setValue(20);
+	var w_sl = new MUI.Slider({
+	id:"w_slider"
+	});
+	w_sl.setValue(40);
+	var b_sl = new MUI.Slider({
+	id:"b_slider"
+	});
+	b_sl.setValue(60);
+	var g_sl = new MUI.Slider({
+	id:"g_slider"
+	});
+	g_sl.setValue(80);
 
-var sc = new MUI.SwipeChange({
-	id:"swip_changer",
-	currentIndex:1,
-	canSwipe:true
-	
-});
+	var v_sl = new MUI.Slider({
+	id:"v_slider",
+	vertical:true
+	});
+	v_sl.setValue(80);
+	var v_w_sl = new MUI.Slider({
+	id:"v_w_slider",
+	vertical:true
+	});
+	v_w_sl.setValue(60);
+	var v_b_sl = new MUI.Slider({
+	id:"v_b_slider",
+	vertical:true
+	});
+	v_b_sl.setValue(40);
+	var v_g_sl = new MUI.Slider({
+	id:"v_g_slider",
+	vertical:true
+	});
+	v_g_sl.setValue(20);
+
+	//toggleSwitch
+	var ts = new MUI.ToggleSwitch({
+	id:"toggleSwitch"
+	});
+	var bl_ts = new MUI.ToggleSwitch({
+	id:"bl_toggleSwitch"
+	});
+	var b_ts = new MUI.ToggleSwitch({
+	id:"b_toggleSwitch"
+	});
+
+
+	//select	
+	var w_sel = new MUI.Select({
+	id:"w_menuSelector"
+	});
+	var g_sel = new MUI.Select({
+	id:"g_menuSelector"
+	});
+
+	var bl_sel = new MUI.Select({
+	id:"bl_menuSelector"
+	});
+	//imagechange
+	var ic = new MUI.ImageChange({
+		id:"image_slider",
+		isAutoChange:true,
+		autoChangeTime:3000,
+		canSwipe:true
+	});
+
+	var tb2 = new MUI.Tab({
+		id:"a_tab",
+		animate:"true"
+	});
 
 });
 </script>
