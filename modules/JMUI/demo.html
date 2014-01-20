@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-ch">
 <head>
 <title>Mobile Web Spirit</title>
 <meta charset="UTF-8">
@@ -1088,12 +1088,6 @@ $(function(){
         }
       })
     }, 100)
-
-	//左边导航
-	$('#sidebar .sidebar_head_li').click(function(e){
-		if($(e.target).parents('.sidebar_inner').length) return;
-		$('.sidebar_inner',this).toggle();
-	});
 
 	//button group
 	var b_btn_list = new MUI.ButtonList({
