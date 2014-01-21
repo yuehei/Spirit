@@ -12,6 +12,7 @@
     <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
 <link rel="stylesheet" href="../../css/common.css" />
+<link rel="stylesheet" href="../../css/prism.css" />
 <link rel="stylesheet" href="./css/jmui/mui-base.css" />
 <link rel="stylesheet" href="./css/jmui/mui-buttons-new.css" />
 <link rel="stylesheet" href="./css/main.css" />
@@ -29,7 +30,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="../../index.html" class="navbar-brand">代号Spirit</a>
+      <a href="../../index.html" class="navbar-brand">Spirit</a>
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
@@ -39,7 +40,7 @@
                   <a id="drop" href="../JMUI/index.html" role="button" class="dropdown-toggle" data-toggle="dropdown">JMUI <b class="caret"></b></a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="../JMUI/index.html">简介</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="../JMUI/demo.html">Demo</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="../JMUI/demo.html">组件</a></li>
                   </ul>
                 </li>
             <li><a href="../Mars/index.html">Mars</a></li>
@@ -107,76 +108,76 @@
             <h3 id="overview_first">第一个用JM写的程序</h3>
             <p>下面我们尝试使用JM来写一个HelloWorld程序，通过这个小Demo，你可以对JM有个概括的了解。</p>
             <p><a href="./helloWorld.html" target="_blank">点击我查看Demo</a></p>
+
             <p>主要html</p>
-            <pre><code>
-&lt;button id="myButton" class="btn btn-primary btn-block" &gt;
+            <pre class="language-markup"><code>&lt;button id="myButton" class="btn btn-primary btn-block" &gt;
     &lt;span class="btn_text"&gt;Hello World&lt;/span&gt;
 &lt;/button&gt;
 
 &lt;div class="word"&gt;
     &lt;div id="word1"&gt;Hello World !&lt;/div&gt;
     &lt;h2 id="word2" &gt;by Tencent AlloyTeam&lt;/h2&gt;
-&lt;/div&gt;
-            </code></pre>
+&lt;/div&gt;</code></pre>
+
             <p>主要js</p>
-            <pre><code>&lt;script &gt;
-    var $E = JM.event;
-    var $D = JM.dom;
+            <pre class="language-javascript"><code>var $E = JM.event;
+var $D = JM.dom;
 
-    var btn = $D.id('myButton');
-    var word1 = $D.id('word1');
-    var word2 = $D.id('word2');
+var btn = $D.id('myButton');
+var word1 = $D.id('word1');
+var word2 = $D.id('word2');
 
-    $E.on(btn,'click',function(){
-        //设置动画基本参数，并且每个动画间隔为1.5秒
-        J.Animation({
-            selector:'#word1',
-            duration:1500,
-            use3d:true
-        }).setStyle({       //向右运动了40%，并且color变成蓝色
-            'top':'60px',
-            'opacity':'1'
+$E.on(btn,'click',function(){
+    //设置动画基本参数，并且每个动画间隔为1.5秒
+    J.Animation({
+        selector:'#word1',
+        duration:1500,
+        use3d:true
+    }).setStyle({       //向右运动了40%，并且color变成蓝色
+        'top':'60px',
+        'opacity':'1'
+    }).transit(function(){
+        this.setDuration(600);
+        this.scale(2).setStyle({
+            'top': '40px',
+            'opacity':'0'
         }).transit(function(){
-            this.setDuration(600);
-            this.scale(2).setStyle({
-                'top': '40px',
-                'opacity':'0'
-            }).transit(function(){
-                word1.style.cssText = "";  //清空dom的style，让动画回归起初状态
-            });
-        });
-
-        J.Animation({
-            selector:'#word2',
-            duration: 1500,
-            use3d : true
-        }).setStyle({
-            'top':'140px',
-            'opacity':'1'
-        }).transit(function(){
-            this.setDuration(800);
-            this.scale(2).setStyle({
-                'top': '150px',
-                'opacity':'0'
-            }).transit(function(){
-                word2.style.cssText = "";
-            });
+            word1.style.cssText = "";  //清空dom的style，让动画回归起初状态
         });
     });
-&lt;/script&gt;
-            </code></pre>
 
-            <p id="overview_analysis"><strong>代码解析</strong>
-            示例程序的button样式额外地使用了<code>JMUI</code>的button样式，不使用也没有影响，样式可以你写你喜欢的。我们来看看js代码部分，<code>$D</code>和<code>$E</code>是引用jm的模块名，这样再代码使用中更加简洁而已，你完全也可以<code>var btn = JM.dom.id('#word1');</code>。代码中展示了JM三个模块的使用：Dom节点选择器，事实处理机制，动画模块。</p>
+    J.Animation({
+        selector:'#word2',
+        duration: 1500,
+        use3d : true
+    }).setStyle({
+        'top':'140px',
+        'opacity':'1'
+    }).transit(function(){
+        this.setDuration(800);
+        this.scale(2).setStyle({
+            'top': '150px',
+            'opacity':'0'
+        }).transit(function(){
+            word2.style.cssText = "";
+        });
+    });
+});</code></pre>
+
+            <p id="overview_analysis">
+                <strong>代码解析</strong>
+                示例程序的button样式额外地使用了<code>JMUI</code>的button样式，不使用也没有影响，样式可以你写你喜欢的。我们来看看js代码部分，<code>$D</code>和<code>$E</code>是引用jm的模块名，这样再代码使用中更加简洁而已，你完全也可以<code>var btn = JM.dom.id('#word1');</code>。代码中展示了JM三个模块的使用：Dom节点选择器，事实处理机制，动画模块。
+            </p>
             
-            <p>JM除了提供常规的选择器外<code>JM.dom.$(selectorText)</code>，还提供专门的选择id选择器<code>JM.dom.$(id)</code>，我们也建议尽量使用id选择器，因为在效率上id选择器是最快的。在事件处理上<code>JM.event.on(obj, evtType, handler)</code>,obj为绑定的dom节点，evtType为事件类型，hadler的事件处理函数，obj和handler都可以输入数组，我们支持多对象多事件同时处理处理。还有些常规的off，one，fire等方法外，还对swip，hold，toch等移动专属事件方法，详细情况可以参考<a href="#event">event模块</a>.</p>
+            <p>
+                JM除了提供常规的选择器外<code>JM.dom.$(selectorText)</code>，还提供专门的选择id选择器<code>JM.dom.$(id)</code>，我们也建议尽量使用id选择器，因为在效率上id选择器是最快的。在事件处理上<code>JM.event.on(obj, evtType, handler)</code>,obj为绑定的dom节点，evtType为事件类型，hadler的事件处理函数，obj和handler都可以输入数组，我们支持多对象多事件同时处理处理。还有些常规的off，one，fire等方法外，还对swip，hold，toch等移动专属事件方法，详细情况可以参考<a href="#event">event模块</a>.
+            </p>
 
-            <p>事件处理的代码里面是<code>JM.Animation</code>内容。有两个段动画代码，我们看第一段就可以了。传给Animation的是一些基本参数，其中<code>use3d</code>来开启这段动画是否使用GPU的3D动画加速(<em>注意这不是银弹，不是所有动画都必须加上</em>)，<code>setStyle</code>方法顾名思义设置要修改的样式，<code>transit</code>方法就是把我们<code>setStyle</code>修改的样式使用css3的transiton的动画形式展示，<code>transit</code>方法只接受一个FinshFunc参数，动画执行后就会执行FinshFunc。通过在FinshFunc函数里在写动画函数，就形成动画回调了。在最后的<code>transit</code>方法回调中，我们把dom的style属性取消掉，这样进行动画就会回归源点。</p>
-        
-
+            <p>
+                事件处理的代码里面是<code>JM.Animation</code>内容。有两个段动画代码，我们看第一段就可以了。传给Animation的是一些基本参数，其中<code>use3d</code>来开启这段动画是否使用GPU的3D动画加速(<em>注意这不是银弹，不是所有动画都必须加上</em>)，<code>setStyle</code>方法顾名思义设置要修改的样式，<code>transit</code>方法就是把我们<code>setStyle</code>修改的样式使用css3的transiton的动画形式展示，<code>transit</code>方法只接受一个FinshFunc参数，动画执行后就会执行FinshFunc。通过在FinshFunc函数里在写动画函数，就形成动画回调了。在最后的<code>transit</code>方法回调中，我们把dom的style属性取消掉，这样进行动画就会回归源点。
+            </p>
         </div>
-        
-        
+
         <h2 id="animation">Animation</h2>
         <p>动画模块，JM的动画实现全部由CSS3实现，有以下几个特征</p>
         <ul>
@@ -194,8 +195,7 @@
         </div>
 
         <p>核心代码</p>
-        <pre><code>
-runBtn.onclick = function(){
+        <pre class="language-javascript"><code>runBtn.onclick = function(){
     $D.setStyle(runBtn,"display","none");
     rect.style.cssText = "";
 
@@ -223,9 +223,11 @@ runBtn.onclick = function(){
             });
         });
     });
-}
-        </code></pre>
-        <p>J.Animation是这个模块的命名模块，传入一个options的obj来设置动画的基本参数。然后在函数尾部使用<code>setStyle</code>进行回调，<code>setStyle</code>是用于设置动画改变的状态。再在函数尾部调用<code>transit</code>方法表示以CSS3的transition方式进行启动动画。我们依旧在<code>transit</code>里面传入匿名函数，表示一段动画结束后，进行回调函数callback，这样我们就不断进行<code>链式调用</code>和callback回调来完成一段动画。</p>
+}</code></pre>
+
+        <p>
+            J.Animation是这个模块的命名模块，传入一个options的obj来设置动画的基本参数。然后在函数尾部使用<code>setStyle</code>进行回调，<code>setStyle</code>是用于设置动画改变的状态。再在函数尾部调用<code>transit</code>方法表示以CSS3的transition方式进行启动动画。我们依旧在<code>transit</code>里面传入匿名函数，表示一段动画结束后，进行回调函数callback，这样我们就不断进行<code>链式调用</code>和callback回调来完成一段动画。
+        </p>
         <h3 id="animation_1">Animation 传入参数说明</h3>
         <ul class="param_list">
             <li><span class="param">selector</span> 动画操作的dom的selector(id)</li>
@@ -266,10 +268,9 @@ runBtn.onclick = function(){
         <p>JM的一些核心方法，为所有模块所共用。例如JM的命名方式<code>namespace</code>，类封装<code>Class</code>，继承<code>extend</code>，操作List<code>filter``map``some</code>等一系列继承函数。</p>
         <p>示例代码</p>
 
-        <pre><code>
-JM.$package("MUI",function(J){
+        <pre class="language-javascript"><code>JM.$package("MUI",function(J){
     // JM的命名空间
-})
+});
 
 //JM的类继承方式
 var AnimateTab = J.Class({extend:MUI.Tab},{
@@ -282,8 +283,7 @@ var AnimateTab = J.Class({extend:MUI.Tab},{
     bindHandlers:function(){
         //do something
     }
-})
-        </code></pre>
+});</code></pre>
 
         <h3>base 公开对外基础函数</h3>
         <ul class="function_list">
@@ -304,9 +304,10 @@ var AnimateTab = J.Class({extend:MUI.Tab},{
         </ul>
 
         <h2 id="borwser">borwser 浏览器检测模块</h2>
-        <p>本可简单简单地划分到utils模块，但是在移动web上我们检测的不单单是浏览器及其版本后，后继拓展还有，终端平台及其版本，所以我们单独地划分出一个模块出来（其实最终还是会合到一个js里面）。</p>
-        <pre><code>
-//对应的值是版本号，如果不是这个浏览器则版本号为0
+        <p>
+            本可简单简单地划分到utils模块，但是在移动web上我们检测的不单单是浏览器及其版本后，后继拓展还有，终端平台及其版本，所以我们单独地划分出一个模块出来（其实最终还是会合到一个js里面）。
+        </p>
+        <pre class="language-javasctript"><code>//对应的值是版本号，如果不是这个浏览器则版本号为0
 
 if(J.browser.plugins.flash&gt;=9){
 
@@ -319,12 +320,11 @@ if(J.browser.chrome &gt;= 30){
 }
 if(J.adobeAir){
 
-}
-        </code></pre>
+}</code></pre>
+
         <h2 id="cookie">cookie</h2>
         <p>非常简单的cookie种植和移除,直接粘贴源码吧</p>
-        <pre><code>
-J.$package(function(J){
+        <pre class="language-javascript"><code>J.$package(function(J){
     var domainPrefix = window.location.host;
     var cookie = {
         set : function(name, value, domain, path, hour) {
@@ -347,14 +347,12 @@ J.$package(function(J){
     };
     J.cookie = cookie;
 
-});
-        </code></pre>
+});</code></pre>
 
         <h2 id="dom">dom</h2>
         <p>HTML的dom操作模块。包括选择器，选取样式，修改样式切换Class等方法。虽然跟著名的jquery对比会逊色一筹，但是基本的功能都能满足，最重要的是jquery有100多K，我们才30多K，我们把最实际常用的Dom操作抽离处理，减少库的代码量，在移动Web上带来更少的流量。</p>
         <p>示例代码</p>
-        <pre><code>
-var $D = J.dom;
+        <pre class="language-javascript"><code>var $D = J.dom;
 var runBtn = $D.id('runBtn'),
     runObj = $D.$('#demo_block .rect'),
     stopBtn = $D.className('demaxiya');
@@ -365,9 +363,11 @@ runBtn.onclick = function(){
 
 if($D.getStyle(runBtn,'background') == '#000'){
     $D.remove(stopBtn);
-}
-        </code></pre>
-        <p>除了比较常用的<code>J.dom.$()</code>的选择器方式，我们还提供了<code>J.dom.id()</code>和<code>J.dom.tagName()</code>等的选择器方式，我们建议，可以的话尽量是用id选择器，因为这是效率最高的。我们没有像Jquery那样吧选择到的Dom元素包装成一个Jquery对象，我们选择到的是原生的Dom元素，方式也是传入Dom和参数。It's simple,but it do well.</p>
+}</code></pre>
+
+        <p>
+            除了比较常用的<code>J.dom.$()</code>的选择器方式，我们还提供了<code>J.dom.id()</code>和<code>J.dom.tagName()</code>等的选择器方式，我们建议，可以的话尽量是用id选择器，因为这是效率最高的。我们没有像Jquery那样吧选择到的Dom元素包装成一个Jquery对象，我们选择到的是原生的Dom元素，方式也是传入Dom和参数。It's simple,but it do well.
+        </p>
         <h3 id="dom_1">dom 函数列表</h3>
         <ul class="function_list">
             <li>$:function(selector,context){}  <span class="desc">会优先选用原生的</span></li>
@@ -391,11 +391,12 @@ if($D.getStyle(runBtn,'background') == '#000'){
         </ul>
 
         <h2 id="event">event</h2>
-        <p>除了平常的支持IE等浏览器兼容外，最重要的是支持移动端的touch，swip等手势事件及transform等移动专有事件.PC端和移动端最大一个不同除了屏幕分辨率外，还有一个非常重要的就是事件不同。我们不但支持了这些事件，还自定义了手势事和提供了很多辅助方法，帮助开发者的实际开发应用，例如:<code>getTouchPos``getDist</code>等。在移动web上坑最多的就是event处理的这一块，至少JM会让你少走很多弯路。</p>
-        
+        <p>
+            除了平常的支持IE等浏览器兼容外，最重要的是支持移动端的touch，swip等手势事件及transform等移动专有事件.PC端和移动端最大一个不同除了屏幕分辨率外，还有一个非常重要的就是事件不同。我们不但支持了这些事件，还自定义了手势事和提供了很多辅助方法，帮助开发者的实际开发应用，例如:<code>getTouchPos``getDist</code>等。在移动web上坑最多的就是event处理的这一块，至少JM会让你少走很多弯路。
+        </p>
+
         <p>示例代码</p>
-        <pre><code>
-var $E = J.event;
+        <pre class="language-javascript"><code>var $E = J.event;
 //动画事件结束后
 $E.on(this.contentWrap,"webkitTransitionEnd",function(e){
     // 自身销毁changed事件
@@ -411,8 +412,7 @@ var endEvt = isTouchDevice ? "touchend" : "mouseup";
 
 //touch事件的绑定
 $E.on(document.body ,moveEvt ,_handleEvent);
-$E.on(document.body ,endEvt ,_handleEvent);
-        </code></pre>
+$E.on(document.body ,endEvt ,_handleEvent);</code></pre>
 
         <p>注意，这里关于touch或swip事件的例子可以查看JMUI的控件，这样会更加清楚.</p>
 
@@ -461,8 +461,7 @@ $E.on(document.body ,endEvt ,_handleEvent);
     
         <h2 id="format">format</h2>
         <p>不多说，直接上源码</p>
-        <pre><code> 
-var date = function(date, formatString){
+        <pre class="language-javascript"><code>var date = function(date, formatString){
     /*
      * eg:formatString="YYYY-MM-DD hh:mm:ss";
      */
@@ -486,13 +485,12 @@ var date = function(date, formatString){
         }
     }
     return formatString;
-};
-        </code></pre>
+};</code></pre>
+
         <h2 id="http">http</h2>
         <p>http处理模块，一些处理urlparam方法和ajax方法。</p>
         <p>示例代码</p>
-        <pre><code>
-J.http.ajax({
+        <pre class="language-javascript"><code>J.http.ajax({
     url: 'http:www.xxx.com/getSomething'
     method : 'post',
     timeout : 50000,
@@ -510,8 +508,8 @@ J.http.ajax({
         //do something ...
     }
 
-});
-        </code></pre>
+});</code></pre>
+
         <h3 id="http_1">http 方法列表</h3>
         <ul class="function_list">
             <li>serializeParam : function ( param ) {}</li>
@@ -523,8 +521,7 @@ J.http.ajax({
     <h2 id="platform">platForm 平台检查模块</h2>
     <p>平台检查模块跟borwser模块一样，是检测模块，后继优化会把两者这合并。为兼容多终端多版本，平台检查是少不了.</p>
     <p>示例代码</p>
-    <pre><code>
-if(J.platform.android &amp;&amp; J.platform.ieVersion &gt; 4){
+    <pre class="language-javascript"><code>if(J.platform.android &amp;&amp; J.platform.ieVersion &gt; 4){
     //....
 }
 if(platform.android){
@@ -537,16 +534,15 @@ if(platform.android){
 //platform.iPod
 //platform.winPhone 
 //platform.IOS
-//.touchDevice
-    </code></pre>
+//.touchDevice</code></pre>
+
     <h2 id="prefix">prefix 前缀辅助模块</h2>
     <p>提供了集中使用prefixe的场景，dom节点，css，js等。</p>
-    <pre><code>
-J.prefix.dom == 'WebKit'
+    <pre class="language-javascript"><code>J.prefix.dom == 'WebKit'
 J.prefix.lowercase == 'moz'
 J.prefix.css == '-ms'
-J.prefix.js == 'webkit'
-    </code></pre>
+J.prefix.js == 'webkit'</code></pre>
+
     <h2 id="string">string</h2>
     <p>提供tmpl 轻量的模板函数。<code>encodeHTML</code>和<code>decodeHTML</code>常用字符编码解析函数和一些URL操作的辅助函数。</p>
     <ul class="function_list">
@@ -558,8 +554,7 @@ J.prefix.js == 'webkit'
     </ul>
     <h2 id="support">support 特性检测模块</h2>
     <p>目前特效检测内容只用audio，fixed，flash和transition。</p>
-    <pre><code>
-J.support = {
+    <pre class="language-javascript"><code>J.support = {
     audio : {
         m4a : 'maybe',
         mp3 : 'maybe',
@@ -569,8 +564,7 @@ J.support = {
     fixed : true,
     flash : ture,
     transitionend : 'transititonend'
-}
-    </code></pre>
+}</code></pre>
 
     <h2 id="type">type 类型检查辅助模块</h2>
     <ul class="function_list">
@@ -694,6 +688,6 @@ $(function(){
 
 });
 </script>
-
+<script type="text/javascript" src="../../js/prism.js"></script>
 </body>
 </html>

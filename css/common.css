@@ -1,5 +1,6 @@
 body {
     background:url(../img/sand_white_bg.jpg) repeat;
+    -webkit-user-select: initial;
 }
 body, h1, h2, h3, h4, h5, h6 {
     font-family : "Helvetica Neue",Helvetica,STHeiTi,"Microsoft YaHei",sans-serif;

@@ -62,13 +62,3 @@ section.container:last-child{
     padding-left: 30px;
     font-size: 90%;
 }
-
-.param_list .param, .event_list{
-    color: #4B8110;
-}
-.function_list .funcName, .function_list li{
-    color: #2487AD;
-}
-.function_list .desc,.event_list .desc{
-    color: black;
-}
