@@ -1,88 +1,13 @@
 body {
     -webkit-user-select: initial;
 }
-p{
-    line-height: 2;
-    margin-bottom: 15px;
-}
-blockquote p{
-    line-height: 2;
-}
 .page_content ul{
     margin-left: 20px;
 }
-blockquote{
-    border-left: 5px solid #3B749B!important;
-}
 
-section.container{
-    border-bottom: 1px solid #D5D5D5;
-    margin: 40px auto;
-}
-section.container:last-child{
-    border-bottom: none;
-}
-
-.my_sidebar.affix {
-    position: static;
-}
-@media (min-width: 992px){
-    .my_sidebar.affix {
-        position: fixed;
-    }
-}
-@media (min-width: 992px){
-    .my_sidebar .nav > .active > ul {
-        display: block;
-    }
-    .my_sidebar.affix, .my_sidebar.affix-bottom {
-        width: 205px;
-    }
-}
-@media (min-width: 1200px){
-    .my_sidebar.affix-bottom, .my_sidebar.affix {
-        width: 255px;
-    }
-}
-.my_sidebar {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    text-shadow: 0 1px 0 #fff;
-    background-color: #f7f5fa;
-    border-radius: 5px;
-}
-.my_sidebar .nav > .active > a, .my_sidebar .nav > .active:hover > a, .my_sidebar .nav > .active:focus > a{
-    font-weight: bold;
-    color: #428bca;
-    background-color: transparent;
-    border-right: 1px solid #428bca;
-}
-.my_sidebar .nav .nav {
-    display: none;
-    margin-bottom: 8px;
-}
-.my_sidebar .nav > li > a {
-    display: block;
-    color: #716b7a;
-    padding: 5px 20px;
-}
-.my_sidebar .nav .nav > li > a {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 30px;
-    font-size: 90%;
-}
-
-.demo_block{
-    width: 100%;
+.demo_block {
     height: 300px;
-    background: white;
-    position: relative;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
-
 .demo_block .rect{
     width: 100px;
     height: 100px;

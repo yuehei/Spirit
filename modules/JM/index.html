@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-ch">
 <head>
-<title>Mobile Web Spirit</title>
+<title>Spirit - Alloyteam移动Web一站式解决方案</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!-- Bootstrap -->
@@ -43,7 +43,7 @@
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="../JMUI/demo.html">组件</a></li>
                   </ul>
                 </li>
-            <li><a href="../Mars/index.html">Mars</a></li>
+            <li><a target="_blank" href="https://github.com/AlloyTeam/Mars">Mars</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -170,7 +170,7 @@ $E.on(btn,'click',function(){
             </p>
             
             <p>
-                JM除了提供常规的选择器外<code>JM.dom.$(selectorText)</code>，还提供专门的选择id选择器<code>JM.dom.$(id)</code>，我们也建议尽量使用id选择器，因为在效率上id选择器是最快的。在事件处理上<code>JM.event.on(obj, evtType, handler)</code>,obj为绑定的dom节点，evtType为事件类型，hadler的事件处理函数，obj和handler都可以输入数组，我们支持多对象多事件同时处理处理。还有些常规的off，one，fire等方法外，还对swip，hold，toch等移动专属事件方法，详细情况可以参考<a href="#event">event模块</a>.
+                JM除了提供常规的选择器外<code>JM.dom.$(selectorText)</code>，还提供专门的选择id选择器<code>JM.dom.$(id)</code>，我们也建议尽量使用id选择器，因为在效率上id选择器是最快的。在事件处理上<code>JM.event.on(obj, evtType, handler)</code>,obj为绑定的dom节点，evtType为事件类型，hadler的事件处理函数，obj和handler都可以输入数组，我们支持多对象多事件同时处理处理。还有些常规的off，one，fire等方法外，还对swip，hold，toch等移动专属事件方法，详细情况可以参考<a href="#event">event模块</a>。
             </p>
 
             <p>
@@ -366,7 +366,7 @@ if($D.getStyle(runBtn,'background') == '#000'){
 }</code></pre>
 
         <p>
-            除了比较常用的<code>J.dom.$()</code>的选择器方式，我们还提供了<code>J.dom.id()</code>和<code>J.dom.tagName()</code>等的选择器方式，我们建议，可以的话尽量是用id选择器，因为这是效率最高的。我们没有像Jquery那样吧选择到的Dom元素包装成一个Jquery对象，我们选择到的是原生的Dom元素，方式也是传入Dom和参数。It's simple,but it do well.
+            除了比较常用的<code>J.dom.$()</code>的选择器方式，我们还提供了<code>J.dom.id()</code>和<code>J.dom.tagName()</code>等的选择器方式，我们建议，可以的话尽量是用id选择器，因为这是效率最高的。我们没有像Jquery那样吧选择到的Dom元素包装成一个Jquery对象，我们选择到的是原生的Dom元素，方式也是传入Dom和参数。It's simple,but it do well。
         </p>
         <h3 id="dom_1">dom 函数列表</h3>
         <ul class="function_list">
@@ -519,7 +519,7 @@ $E.on(document.body ,endEvt ,_handleEvent);</code></pre>
         </ul>
 
     <h2 id="platform">platForm 平台检查模块</h2>
-    <p>平台检查模块跟borwser模块一样，是检测模块，后继优化会把两者这合并。为兼容多终端多版本，平台检查是少不了.</p>
+    <p>平台检查模块跟borwser模块一样，是检测模块，后继优化会把两者这合并。为兼容多终端多版本，平台检查是少不了。</p>
     <p>示例代码</p>
     <pre class="language-javascript"><code>if(J.platform.android &amp;&amp; J.platform.ieVersion &gt; 4){
     //....
