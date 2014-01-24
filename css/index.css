@@ -26,6 +26,9 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+.content .col-lg-4 a {
+  text-decoration: none;
+}
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
